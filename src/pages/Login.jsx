@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/pages/login.css';
-
+import Header from '../components/base/Header'
 const Login = () => {
   const navigate = useNavigate();
 
@@ -18,55 +18,66 @@ const Login = () => {
   }, [loginForm]);
 
   return (
-    <div>
-      <h1>Login</h1>
-      <input
-        type="text"
-        placeholder="Username"
-        onChange={(e) => {
-          setLoginForm({
-            ...loginForm,
-            username: e.target.value,
-          });
 
 
-        }}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => {
-          setLoginForm({
-            ...loginForm,
-            password: e.target.value,
-          });
-        }}
-      />
-      <button
-        onClick={() => {
-          setError("");
 
-          const data = new FormData();
 
-          data.append("username", loginForm.username);
-          data.append("password", loginForm.password);
+    <>
+    
+    <Header/>
+    
+    
+    </>
+    // <div>
 
-          axios
-            .post("http://localhost/ecommerse_website/server/login.php", data)
-            .then((res) => {
-              localStorage.setItem("userId", res.data.user.id);
+    //   <h1>Login</h1>
+    //   <input
+    //     type="text"
+    //     placeholder="Username"
+    //     onChange={(e) => {
+    //       setLoginForm({
+    //         ...loginForm,
+    //         username: e.target.value,
+    //       });
 
-              navigate("/users");
-            })
-            .catch((error) => {
-              setError(error.response.data.status);
-            });
-        }}
-      >
-        Login
-      </button>
-      {error && <p>{error}</p>}
-    </div>
+
+    //     }}
+    //   />
+    //   <input
+    //     type="password"
+    //     placeholder="Password"
+    //     onChange={(e) => {
+    //       setLoginForm({
+    //         ...loginForm,
+    //         password: e.target.value,
+    //       });
+    //     }}
+    //   />
+    //   <button
+    //     onClick={() => {
+    //       setError("");
+
+    //       const data = new FormData();
+
+    //       data.append("username", loginForm.username);
+    //       data.append("password", loginForm.password);
+
+    //       axios
+    //         .post("http://localhost/ecommerse_website/server/login.php", data)
+    //         .then((res) => {
+    //           localStorage.setItem("userId", res.data.user.id);
+
+    //           navigate("/users");
+    //         })
+    //         .catch((error) => {
+    //           setError(error.response.data.status);
+    //         });
+    //     }}
+    //   >
+    //     Login
+    //   </button>
+    //   {error && <p>{error}</p>}
+    // </div>
   );
 };
 
