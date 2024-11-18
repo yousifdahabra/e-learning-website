@@ -87,13 +87,13 @@ const Login = () => {
                     
                         data.append("username", loginForm.username);
                         data.append("password", loginForm.password);
-                        // const state = await requestAPI({
-                        //   route:"Login",
-                        //   method:"POST",
-                        //   body:data,
-                        // })
-                        console.log('data')
-                        console.log(data)
+                        const state = await requestAPI({
+                          route:"Login",
+                          method:"POST",
+                          body:data,
+                        })
+                        console.log('state')
+                        console.log(state)
 
                        
                       }}

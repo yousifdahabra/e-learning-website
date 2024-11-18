@@ -13,10 +13,13 @@ export const requestAPI =  async({route,method = 'GET' ,body}) =>{
             method,
             data:body,
             headers:{
-                "Content-Type":"application/json",
+                'Content-Type': 'application/x-www-form-urlencoded',
+                // "Content-Type":"application/json",
                 // Authorization:localStorage.token,
             }
         });
+        console.log('respons')
+        console.log(respons)
         return respons.data;
 
     }catch (error){
