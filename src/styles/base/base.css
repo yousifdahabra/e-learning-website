@@ -1,0 +1,39 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+body{
+    max-width: 100%;
+    overflow-x: hidden;  
+}
+.view {
+    height: 40px;
+    width: 90px;
+    border-radius: 8px;
+    background-color: #5500cb;
+    color: white;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+.view:hover{
+    border-left: 5px solid #a2a2a2;
+    background-color: #dadada;
+    cursor: pointer;
+    color: black;
+}
+
+.hidden{
+    display: none !important;
+}
+
+.show{
+    display: block !important;
+}
+.alert{
+    color: white;
+    background-color: red;
+}
