@@ -1,6 +1,7 @@
 <?php
 
 include "connection.php";
+
 if(isset($_POST['username']) && isset($_POST['password'])){
     if(!empty($_POST['username']) && !empty($_POST['password'])){
         $username = $_POST['username'];
@@ -12,12 +13,12 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             "password" => $password,
         ];
         echo  json_encode($response)  ;
-        
+        $check_user_query = select_query([
+            "query"=>"Select * from users_tbl where username = ?",
+            "param" => "s",
+            "data" => [$username]
+        ]);
     
-        // $check_user_query = $conection->prepare("Select * from users_tbl where username=?  ");
-        // $check_user_query->bind_param('s',$username);
-        // $check_user_query->execute();
-        // $check_user = $check_user_query->get_result();
         // if($check_user->num_rows == 0){
         //     $inser_user = $conection->prepare("insert into users_tbl(username,password) values(?,?) ");
         //     $inser_user->bind_param("ss",$username,$hash);
