@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/pages/login.css';
 import Header from '../components/base/Header'
+
+import { requestAPI } from '../utlis/request.js'
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -77,24 +80,22 @@ const Login = () => {
 
                 <div class=" flex flex-wrap-nowrap align-items-start  form-group">
                     <button id="submit_login_form" class="view" type="button"
-                      onClick={() => {
+                      onClick={ async () => {
                         setError("");
                     
                         const data = new FormData();
                     
                         data.append("username", loginForm.username);
                         data.append("password", loginForm.password);
-                    
-                        axios
-                          .post("http://localhost/ecommerse_website/server/login.php", data)
-                          .then((res) => {
-                            localStorage.setItem("userId", res.data.user.id);
-                    
-                            navigate("/users");
-                          })
-                          .catch((error) => {
-                            setError(error.response.data.status);
-                          });
+                        // const state = await requestAPI({
+                        //   route:"Login",
+                        //   method:"POST",
+                        //   body:data,
+                        // })
+                        console.log('data')
+                        console.log(data)
+
+                       
                       }}
                     
                     
