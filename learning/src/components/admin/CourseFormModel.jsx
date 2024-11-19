@@ -8,8 +8,6 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
         'user_id':0,
         'description':'',
         'course_id':0,
-
-        
     })
     useEffect(() => {
         if (editData) {

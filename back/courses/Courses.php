@@ -10,7 +10,8 @@ $key = new Key($secret_key,"HS256");
 $payload = JWT::decode($token,$key);
 if($payload->role == "admin"){
     $get_courses = $db->select_query([
-        "query"=>"Select * from courses_tbl   ",
+        "query"=>"Select * from courses_tbl c
+                  left join users_tbl s on c.user_id = s.user_id ",
         "types" => "",
         "params" => []
     ]);

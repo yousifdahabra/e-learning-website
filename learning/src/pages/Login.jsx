@@ -86,11 +86,15 @@ const Login = () => {
                     
                         data.append("username", loginForm.username);
                         data.append("password", loginForm.password);
-                        const result = await requestAPI({
-                          route:"Login",
-                          method:"POST",
-                          body:data,
-                        })
+
+                       const respons = await axios.request({
+                          url:`Login.php`,
+                          method:'POST',
+                          data:data
+                      });
+                      const result = respons.data
+
+
                         if(result.states == 1){
                           localStorage.setItem("token", result.token);
                           localStorage.setItem("user", result.user);

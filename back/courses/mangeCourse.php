@@ -71,10 +71,9 @@ try {
     }else{
         $response = [
             "state" => "2",
-            "message" => "not authrize to insert or update course",
+            "message" => "You are Not authrize to insert or update course",
         ];
         echo json_encode($response)  ;
-    
     }
 
     

@@ -4,7 +4,7 @@ import axios from "axios";
 import { requestAPI } from '../../utlis/request.js'
 
 
-const CoursesReportBody = () =>{
+const CoursesReportBody = ({isOpen}) =>{
     const [courses, setCourses] = useState([]);
 
 
@@ -67,6 +67,15 @@ const CoursesReportBody = () =>{
                                   
                                 
                                 >Delete</button>
+                                <button className="delete-btn view"
+                                onClick={
+                                    () => {
+                                        isOpen(c)
+                                    }
+                                }
+                                  
+                                
+                                >Edit</button>
                             </td>
                         </tr>            
                     ))
