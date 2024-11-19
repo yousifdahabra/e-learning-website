@@ -64,7 +64,7 @@ const CourseFormModel = ({isOpen,isClose}) =>{
                                 method:"POST",
                                 body:formData,
                             })
-
+                            isClose()
                             console.log(result)
                      
                     
