@@ -1,35 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { requestAPI } from '../../utlis/request.js'
 
-const CourseFormModel = ({isOpen,isClose}) =>{
+const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
     const [formData,setFormData] = useState({
         'course_name':'',
         'user_id':0,
         'description':'',
+        'course_id':0,
+
+        
     })
+    useEffect(() => {
+        if (editData) {
+            setFormData({
+                course_name: editData.course_name || "",
+                user_id: editData.user_id || 0,
+                description: editData.description || "",
+                course_id: editData.course_id || 0,
+            });
+        }
+    }, [editData]);
 
     return (
-        <div id="form_model" className={`modal ${isOpen ? "": "hidden" }`} >
+        <div className={`modal ${isOpen ? "": "hidden" }`} >
         <div className="modal-content">
             <input type="hidden" id="transaction_id" value="0"/>
             <div className="form flex flex-direction-column">
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">
                     <label for="course_name">course name</label>
                     <input 
+                    value={formData.course_name}
+
                     onChange={(e)=>{
                         setFormData({
                             ...formData,
                             course_name:e.target.value
                         })
                     }}
+
                     type="text"/>
                 </div>
                 
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">
                     <label for="type">Select User</label>
                     <select 
-                    
+                    value={formData.user_id}
+
                     onChange={(e)=>{
                         setFormData({
                             ...formData,
@@ -46,6 +63,7 @@ const CourseFormModel = ({isOpen,isClose}) =>{
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">
                     <label for="description">Note</label>
                     <textarea 
+                    value={formData.description}
                     onChange={(e)=>{
                         setFormData({
                             ...formData,
@@ -58,7 +76,6 @@ const CourseFormModel = ({isOpen,isClose}) =>{
 
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">
                     <button onClick={ async ()=>{
-                            formData['course_id'] = 0;
                             const result = await requestAPI({
                                 route:"courses/mangeCourse",
                                 method:"POST",
