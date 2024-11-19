@@ -8,9 +8,9 @@ const CoursesReportBody = () =>{
     const [courses, setCourses] = useState([]);
 
 
-    const deleteCourse = async (user_id) => {
+    const deleteCourse = async (course_id) => {
         const data = new FormData();
-        data.append("user_id", user_id);
+        data.append("course_id", course_id);
         const result = await requestAPI({
             route:"courses/deleteCourse",
             method:"POST",
