@@ -43,7 +43,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
                 "messages" => "Account Successfully created",
                 "user" => $user,
                 "token" => $token,
-        ];
+            ];
     
         }else{
 

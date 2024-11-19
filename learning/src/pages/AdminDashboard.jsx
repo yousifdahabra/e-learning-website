@@ -4,7 +4,7 @@ import Header from '../components/base/Header'
 import AdminNavContainer from '../components/admin/AdminNavContainer'
 import ReportHeader from '../components/admin/ReportHeader'
 import Boxes from '../components/admin/Boxes'
-import axios from "axios";
+import ReportBody from '../components/admin/ReportBody'
 
 
 
@@ -26,6 +26,7 @@ const AdminDashboard = () =>{
                   </button>
                 </div>
               </div>
+              <ReportBody  />
 
 
 
