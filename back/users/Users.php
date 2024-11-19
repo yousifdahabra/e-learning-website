@@ -5,7 +5,7 @@ require "../vendor/autoload.php";
 use Firebase\JWT\JWT;
 
 $get_user = $db->select_query([
-    "query"=>"Select * from users_tbl ",
+    "query"=>"Select * from users_tbl where role != 'admin' ",
     "types" => "",
     "params" => []
 ]);
