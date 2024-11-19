@@ -1,8 +1,6 @@
 <?php 
 include "../connection.php";
 
-require "../vendor/autoload.php";
-use Firebase\JWT\JWT;
 
 $get_courses = $db->select_query([
     "query"=>"Select * from courses_tbl   ",
