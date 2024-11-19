@@ -11,12 +11,18 @@ import CoursesReportBody from '../components/admin/CoursesReportBody'
 
 const AdminDashboard = () =>{
 
-    const [isOpenAdd, setisOpenAdd] = useState(false);
+  const [isOpenAdd, setisOpenAdd] = useState(false);
+  const [editData, seteditData] = useState([]);
 
     const triggerAddForm = () =>{
-        setisOpenAdd((isOpenAdd)=> !isOpenAdd)
+      setisOpenAdd((isOpenAdd)=> !isOpenAdd)
+  }
+    const triggerEditForm = ($data) =>{
+      setisOpenAdd((isOpenAdd)=> !isOpenAdd)
+      seteditData($data);
+      console.log($data)
     }
-    const triggerCloseForm = () =>{
+  const triggerCloseForm = () =>{
         setisOpenAdd(false)
     }
 
@@ -31,12 +37,12 @@ const AdminDashboard = () =>{
             
               <CourseReportHeader triggerAdd={triggerAddForm} />
 
-              <CoursesReportBody  />
+              <CoursesReportBody isOpen={triggerEditForm} />
 
             </div>
           </div>
         </div>
-        <CourseFormModel isOpen={isOpenAdd} isClose={triggerCloseForm} />
+        <CourseFormModel isOpen={isOpenAdd} isClose={triggerCloseForm} editData={editData}  />
 
 
 
