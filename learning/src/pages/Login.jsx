@@ -93,8 +93,12 @@ const Login = () => {
                         })
                         if(result.states == 1){
                           localStorage.setItem("token", result.token);
+                          localStorage.setItem("user", result.user);
 
-                          console.log(result.messages)
+                          if(result.user.role == 'admin'){
+                            navigate("/AdminDashboard");
+                          }
+                            console.log(result.user.role)
                         }else{
                           setError(result.messages);
                         }
