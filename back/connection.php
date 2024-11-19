@@ -28,16 +28,18 @@ class Database {
     public function getConnection() {
         return $this->connection;
     }
-
-    public function select_query($query, $params = [], $types = "") {
-        $statement = $this->connection->prepare($query);
+    //$query, $params = [], $types = ""
+    public function select_query($options) {
+        $statement = $this->connection->prepare($options['query']);
 
         if ($statement === false) {
             die("Prepare failed: " . $this->connection->error);
         }
 
-        if (!empty($params)) {
-            $statement->bind_param($types, ...$params);
+        
+        if (isset($options['params']) && isset($options['types']) ) {
+            if (!empty($options['params']) && !empty($options['params']) )
+                $statement->bind_param($options['types'], ...$options['params']);
         }
 
         $statement->execute();
@@ -53,15 +55,15 @@ class Database {
         return $data;
     }
 
-    public function modify_query($query, $params = [], $types = "") {
-        $statement = $this->connection->prepare($query);
+    public function modify_query($options) {
+        $statement = $this->connection->prepare($options['query']);
 
         if ($statement === false) {
             die("Prepare failed: " . $this->connection->error);
         }
 
-        if (!empty($params)) {
-            $statement->bind_param($types, ...$params);
+        if (!empty($options['params'])) {
+            $statement->bind_param($options['types'], ...$options['params']);
         }
 
         $statement->execute();
@@ -78,3 +80,5 @@ class Database {
 
 
 }
+
+$db = Database::getInstance();
