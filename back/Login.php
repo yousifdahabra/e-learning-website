@@ -1,66 +1,78 @@
 <?php
 
 include "connection.php";
+require "vendor/autoload.php";
+
+use Firebase\JWT\JWT;
+
 
 if(isset($_POST['username']) && isset($_POST['password'])){
     if(!empty($_POST['username']) && !empty($_POST['password'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
-    
-        // $hash = password_hash($password,PASSWORD_DEFAULT);
-        $response = [
-            "username" => $username,
-            "password" => $password,
-        ];
-        echo  json_encode($response)  ;
-        $check_user_query = select_query([
+
+        $hash = password_hash($password,PASSWORD_DEFAULT);
+
+        $get_user = $db->select_query([
             "query"=>"Select * from users_tbl where username = ?",
-            "param" => "s",
-            "data" => [$username]
+            "types" => "s",
+            "params" => [$username]
         ]);
+
+        if(count($get_user) == 0){
+            $insert_user = $db->modify_query([
+                "query"=>"insert into users_tbl(username,password) values(?,?)",
+                "types" => "ss",
+                "params" => [$username,$hash]
+            ]);
     
-        // if($check_user->num_rows == 0){
-        //     $inser_user = $conection->prepare("insert into users_tbl(username,password) values(?,?) ");
-        //     $inser_user->bind_param("ss",$username,$hash);
-        //     $inser_user->execute();
+            $insert_user_id = $db->get_insert_id();
+            $response = [
+                "states" => "1",
+                "messages" => "Account Successfully created",
+                "user_id" => $insert_user_id,
+            ];
     
-        //     $_SESSION['login_id'] = $inser_user->insert_id;
-        //     $response = [
-        //         "states" => "1",
-        //         "messages" => "Account Successfully created",
-        //     ];
+        }else{
+
+            
+            $user= $get_user[0];
+            $password_db =  $user['password'];
+            if(password_verify($password,$password_db)){
+                $secret_key = '$2y$10$uxhso0J/ydC/ZBbY6Gb8n.Gbmo13aM3ikcBofCDwxSmqzX6320J/a';
+                $payload = $user;
+                $token = JWT::encode($payload ,$secret_key,"HS256");
+
+
+                $user_id =  $user['user_id'];
     
-        // }else{
-        //     $user= $check_user->fetch_assoc();
-        //     $password_db =  $user['password'];
-        //     if(password_verify($password,$password_db)){
-        //         $user_id =  $user['user_id'];
-        //         $_SESSION['login_id'] = $user_id;
+                $response = [
+                    "states" => "1",
+                    "messages" => "Login Successfully",
+                    "user" => $user,
+                    "token" => $token,
+                ];
+            }else{
+                // http_response_code(400);
+                $response = [
+                    "states" => "0",
+                    "messages" => "Login failed: Incorrect password",
+                ];
+            }
     
-        //         $response = [
-        //             "states" => "1",
-        //             "messages" => "Login Successfully",
-    
-        //         ];
-        //     }else{
-        //         $response = [
-        //             "states" => "0",
-        //             "messages" => "Login failed: Incorrect password",
-        //         ];
-        //     }
-    
-        // }
-        // echo  json_encode($response)  ;
-    
+        }
+        echo  json_encode($response)  ;
+
+        
         
     }
     else{
-        // http_response_code(404);
+        // http_response_code(400);
         $response = [
             "states" => "0",
             "message" => "Yous must fill email and password",
         ];
-        echo  json_encode($response)  ;
+        echo json_encode($response)  ;
         
     }
     
