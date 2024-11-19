@@ -29,8 +29,10 @@ const AdminDashboard = () =>{
             <Boxes />
             <div className="report-container">
             
-            <CourseReportHeader triggerAdd={triggerAddForm} />
-            <CoursesReportBody  />
+              <CourseReportHeader triggerAdd={triggerAddForm} />
+
+              <CoursesReportBody  />
+
             </div>
           </div>
         </div>

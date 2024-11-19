@@ -1,9 +1,8 @@
 <?php
 
 include "connection.php";
-
-require "vendor/autoload.php";
 use Firebase\JWT\JWT;
+
 
 
 if(isset($_POST['username']) && isset($_POST['password'])){
@@ -51,7 +50,6 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             $user= $get_user[0];
             $password_db =  $user['password'];
             if(password_verify($password,$password_db)){
-                $secret_key = '$2y$10$uxhso0J/ydC/ZBbY6Gb8n.Gbmo13aM3ikcBofCDwxSmqzX6320J/a';
                 $payload = $user;
                 $token = JWT::encode($payload ,$secret_key,"HS256");
 

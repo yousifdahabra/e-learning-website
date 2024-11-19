@@ -98,7 +98,7 @@ const Login = () => {
                           if(result.user.role == 'admin'){
                             navigate("/AdminDashboard");
                           }
-                            console.log(result.user.role)
+                            console.log(result)
                         }else{
                           setError(result.messages);
                         }
