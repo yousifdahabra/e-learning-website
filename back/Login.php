@@ -27,11 +27,23 @@ if(isset($_POST['username']) && isset($_POST['password'])){
             ]);
     
             $insert_user_id = $db->get_insert_id();
+            $get_user = $db->select_query([
+                "query"=>"Select * from users_tbl where user_id = ?",
+                "types" => "i",
+                "params" => [$insert_user_id]
+            ]);
+            $user= $get_user[0];
+
+            $secret_key = '$2y$10$uxhso0J/ydC/ZBbY6Gb8n.Gbmo13aM3ikcBofCDwxSmqzX6320J/a';
+            $payload = $user;
+            $token = JWT::encode($payload ,$secret_key,"HS256");
+
             $response = [
                 "states" => "1",
                 "messages" => "Account Successfully created",
-                "user_id" => $insert_user_id,
-            ];
+                "user" => $user,
+                "token" => $token,
+        ];
     
         }else{
 

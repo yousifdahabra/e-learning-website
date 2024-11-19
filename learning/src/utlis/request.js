@@ -18,12 +18,10 @@ export const requestAPI =  async({route,method = 'GET' ,body}) =>{
                 // Authorization:localStorage.token,
             }
         });
-        console.log('respons')
-        console.log(respons)
         return respons.data;
 
     }catch (error){
-        console.log(error)
+        return error;
     }
 
 

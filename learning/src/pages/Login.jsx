@@ -17,7 +17,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    console.log(loginForm);
+
   }, [loginForm]);
 
   return (
@@ -34,7 +34,7 @@ const Login = () => {
                 <div class="nav-options">
                     <a href="#" class="nav-option active">
                         <i class="fa fa-tachometer" aria-hidden="true"></i>
-                        <h3> Login</h3>
+                        <h3> Login / Sign Up</h3>
                     </a>
                 </div>
             </nav>
@@ -81,20 +81,25 @@ const Login = () => {
                 <div class=" flex flex-wrap-nowrap align-items-start  form-group">
                     <button id="submit_login_form" class="view" type="button"
                       onClick={ async () => {
-                        setError("");
-                    
+                        setError('');
                         const data = new FormData();
                     
                         data.append("username", loginForm.username);
                         data.append("password", loginForm.password);
-                        const state = await requestAPI({
+                        const result = await requestAPI({
                           route:"Login",
                           method:"POST",
                           body:data,
                         })
-                        console.log('state')
-                        console.log(state)
+                        if(result.states == 1){
+                          localStorage.setItem("token", result.token);
 
+                          console.log(result.messages)
+                        }else{
+                          setError(result.messages);
+                        }
+
+                        
                        
                       }}
                     
