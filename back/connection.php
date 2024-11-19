@@ -77,7 +77,9 @@ class Database {
 
         return $affectedRows;
     }
-
+    public function get_insert_id() {
+        return $this->connection->insert_id;
+    }
 
 }
 
