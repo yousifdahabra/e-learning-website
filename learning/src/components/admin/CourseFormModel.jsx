@@ -9,6 +9,15 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
         'description':'',
         'course_id':0,
     })
+
+    const getInstructorOptions = async () =>{
+        const result = await requestAPI({
+            route:"courses/instructor_course",
+            method:"POST",
+            body:formData,
+        })
+
+    }
     useEffect(() => {
         if (editData) {
             setFormData({
