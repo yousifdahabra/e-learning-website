@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { requestAPI } from '../../utlis/request.js'
 
 const Boxes = () =>{
     const [getReport,setReport]= useState({
@@ -6,6 +7,16 @@ const Boxes = () =>{
         'instructors':0,
         'courses':0,
     });
+    const reportInfo = async ()=>{
+        const result = await requestAPI({
+            route:"users/totalReport",
+            method:"POST",
+            body:'',
+        })
+        const report = result.result
+        setReport(report)
+
+    }
 
     return (
         <div className="flex justify-content-evenly align-items-center justify-content-space-around flex-wrap box-container ">
