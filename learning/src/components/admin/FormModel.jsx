@@ -7,12 +7,14 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
     const [formData,setFormData] = useState({
         'username':'',
         'password':'',
+        'user_id':0,
     })
 
     useEffect(() => {
         if (editData) {
-            setFormData({
+            setFormData({        
                 username: editData.username || "",
+                user_id: editData.user_id || 0,
             });
         }
     }, [editData]);
@@ -60,8 +62,8 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
                                 body:formData,
                             })
                             isClose()
-                            console.log(result)
-                     
+
+                            
                     
                     }} 
                     className="view" type="button">Submit</button>
