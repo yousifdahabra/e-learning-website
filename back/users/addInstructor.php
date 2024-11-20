@@ -16,7 +16,7 @@ try {
 
                     $insert = $db->modify_query([
                         "query"=>"Insert  into users_tbl (username,password,role) values(?,?,?)",
-                        "types" => "ss",
+                        "types" => "sss",
                         "params" => [$_POST['username'],$hash,"instructor"]
                     ]);
                     if($insert){
