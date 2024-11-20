@@ -3,6 +3,8 @@ import axios from "axios";
 import { requestAPI } from '../../utlis/request.js'
 
 const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
+    const [instructorOptions, setInstructorOptions] = useState([]);
+
     const [formData,setFormData] = useState({
         'course_name':'',
         'user_id':0,
@@ -17,12 +19,10 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
             body:formData,
         })
         const instructors = result.result
-
-        
- 
+        setInstructorOptions(instructors)
     } 
     useEffect(() => {
-        
+        getInstructorOptions();
         if (editData) {
             setFormData({
                 course_name: editData.course_name || "",
@@ -67,7 +67,12 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
 
                     >
                         <option value="0">Select</option>
-                        {getInstructorOptions()}
+                        {instructorOptions.map((instructor) => (
+                                <option key={instructor.user_id} value={instructor.user_id}>
+                                    {instructor.username}
+                                </option>
+                            ))}
+
                     </select>
                 </div>
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">
