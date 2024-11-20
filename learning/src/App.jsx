@@ -10,6 +10,7 @@ import './styles/base/base.css';
 import './styles/base/flex.css';
 import './styles/pages/dashboard.css';
 import Users from './pages/Users';
+import Posts from './pages/Posts';
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Courses" element={<Courses />} />
 
         <Route path="/Users" element={<Users />} />
+        <Route path="/Posts" element={<Posts />} />
 
         <Route path="/*" element={<h1>Not Found</h1>} />
       </Routes>
