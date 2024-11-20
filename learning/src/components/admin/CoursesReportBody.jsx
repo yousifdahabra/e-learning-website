@@ -44,7 +44,8 @@ const CoursesReportBody = ({isOpen}) =>{
             <thead>
                 <tr>
                     <th>course name</th>
-                    <th>user id</th>
+                    <th>user name</th>
+                    <th>Description</th>
                     <th>Date</th>
                     <th>Action</th>
                 </tr>
@@ -55,6 +56,7 @@ const CoursesReportBody = ({isOpen}) =>{
                         <tr   >
                             <td>{c.course_name}</td>
                             <td>{c.username}</td>
+                            <td>{c.description}</td>
                              
                             <td>{c.craete_date}</td>
                             <td>
