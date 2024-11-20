@@ -9,6 +9,7 @@ import './styles/base/color.css';
 import './styles/base/base.css';
 import './styles/base/flex.css';
 import './styles/pages/dashboard.css';
+import Users from './pages/Users';
 
 function App() {
   const location = useLocation();
@@ -17,8 +18,12 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Login />} />
+
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/Courses" element={<Courses />} />
+
+        <Route path="/Users" element={<Users />} />
+
         <Route path="/*" element={<h1>Not Found</h1>} />
       </Routes>
     </div>
