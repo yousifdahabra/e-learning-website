@@ -101,6 +101,9 @@ const Login = () => {
 
                           if(result.user.role == 'admin'){
                             navigate("/AdminDashboard");
+                          }else if(result.user.role == 'instructor'){
+                            navigate("/Users");
+
                           }
                             console.log(result)
                         }else{
