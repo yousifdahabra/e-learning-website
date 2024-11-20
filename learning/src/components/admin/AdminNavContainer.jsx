@@ -32,7 +32,13 @@ const AdminNavContainer = () => {
                     <i className="fa fa-tachometer" aria-hidden="true"></i>
                     <h3>Courses</h3>
                 </a>
-                <a id="logout_btn" href="#" className="nav-option ">
+                <a className="nav-option"
+                onClick={()=>{
+                    localStorage.clear()
+                    navigate("/");
+                }}
+                
+                >
                     <i className="fa fa-tachometer" aria-hidden="true"></i>
                     <h3>Logout</h3>
                 </a>
