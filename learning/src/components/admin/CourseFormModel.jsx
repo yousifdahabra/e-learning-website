@@ -12,13 +12,17 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
 
     const getInstructorOptions = async () =>{
         const result = await requestAPI({
-            route:"courses/instructor_course",
+            route:"courses/instructorCourse",
             method:"POST",
             body:formData,
         })
+        const instructors = result.result
 
-    }
+        
+ 
+    } 
     useEffect(() => {
+        
         if (editData) {
             setFormData({
                 course_name: editData.course_name || "",
@@ -63,8 +67,7 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
 
                     >
                         <option value="0">Select</option>
-                        <option value="1">user 1</option>
-                        <option value="2">user 2</option>
+                        {getInstructorOptions()}
                     </select>
                 </div>
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">

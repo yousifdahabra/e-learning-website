@@ -54,7 +54,7 @@ const CoursesReportBody = ({isOpen}) =>{
                     courses?.map((c) => (
                         <tr   >
                             <td>{c.course_name}</td>
-                            <td>{c.user_id}</td>
+                            <td>{c.username}</td>
                              
                             <td>{c.craete_date}</td>
                             <td>

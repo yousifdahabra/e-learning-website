@@ -10,7 +10,7 @@ $key = new Key($secret_key,"HS256");
 $payload = JWT::decode($token,$key);
 if($payload->role == "admin"){
     $get_instructors = $db->select_query([
-        "query"=>"Select * from users_tbl where role=''instructor' ",
+        "query"=>"Select * from users_tbl where role='instructor' ",
         "types" => "",
         "params" => []
     ]);
