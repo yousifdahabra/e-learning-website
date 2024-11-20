@@ -5,7 +5,7 @@ const UserReportHeader =({triggerAdd}) => {
         <div className="report-header">
         <h1 className="recent-Articles">Users Report</h1>
         <div className="report-btn flex flex-wrap align-content-center justify-content-center align-items-center">
-          <button id="transaction_btn" className="view">
+          <button id="transaction_btn" onClick={triggerAdd} className="view">
             Add Instructor
           </button>
         </div>
