@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { requestAPI } from '../../utlis/request.js'
 
 const Boxes = () =>{
@@ -11,13 +11,15 @@ const Boxes = () =>{
         const result = await requestAPI({
             route:"users/totalReport",
             method:"POST",
-            body:'',
+            body:'', 
         })
         const report = result.result
         setReport(report)
-
-    }
-
+     }
+    useEffect(()=>{
+        
+        reportInfo()
+    },[])
     return (
         <div className="flex justify-content-evenly align-items-center justify-content-space-around flex-wrap box-container ">
         <div className="flex align-items-center justify-content-space-between box ">
