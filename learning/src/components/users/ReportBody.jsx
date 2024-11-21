@@ -50,13 +50,20 @@ const ReportBody = ({isOpen}) =>{
                 <td>{c.craete_date}</td>
                 <td>
                   <button
-                    className="  view"
+                    className="  delete-btn view"
                     onClick={() => {
                         navigate(`/Posts?course_id=${c.course_id}`);
                     }}
                   >
                     Post
                   </button>
+                  <button
+                    className="  delete-btn view"
+                    onClick={isOpen}
+                  >
+                    Invite Students
+                  </button>
+
                 </td>
               </tr>
             ))}
