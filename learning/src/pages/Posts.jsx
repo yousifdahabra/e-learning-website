@@ -15,7 +15,6 @@ const Posts = () =>{
       const triggerEditForm = ($data) =>{
         setisOpenAdd((isOpenAdd)=> !isOpenAdd)
         seteditData($data);
-        console.log($data)
       }
     const triggerCloseForm = () =>{
           setisOpenAdd(false)

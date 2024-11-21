@@ -16,7 +16,6 @@ const CoursesReportBody = ({isOpen}) =>{
             method:"POST",
             body:data,
         })
-        console.log(result)
         getCourses()
       }
      
@@ -27,8 +26,6 @@ const CoursesReportBody = ({isOpen}) =>{
             method:"POST",
             body:'',
         })
-        console.log('result')
-        console.log(result)
         setCourses(result.result)
          
      }

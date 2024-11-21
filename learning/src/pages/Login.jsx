@@ -105,7 +105,6 @@ const Login = () => {
                             navigate("/Users");
 
                           }
-                            console.log(result)
                         }else{
                           setError(result.messages);
                         }

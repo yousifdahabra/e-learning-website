@@ -103,7 +103,6 @@ const InviteCourseFormModel = ({isOpen,isClose,course_id }) =>{
                                 body:form,
                             })
                             isClose()
-                            console.log(result)
                      
                     
                     }} 

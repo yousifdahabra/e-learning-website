@@ -97,7 +97,6 @@ const CourseFormModel = ({isOpen,isClose,editData = {}}) =>{
                                 body:formData,
                             })
                             isClose()
-                            console.log(result)
                      
                     
                     }} 

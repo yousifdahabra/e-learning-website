@@ -31,8 +31,6 @@ const ReportBody = () =>{
             method:"POST",
             body:'',
         })
-        console.log('result')
-        console.log(result)
         setUsers(result.result)
          
      }

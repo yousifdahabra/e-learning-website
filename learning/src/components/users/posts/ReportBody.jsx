@@ -22,8 +22,6 @@ const PostsReportBody = ({triggerAdd}) =>{
             method:"POST",
             body:{course_id:course_id},
         })
-        console.log('result')
-        console.log(result)
         setCoursePosts(result.result)
          
      }

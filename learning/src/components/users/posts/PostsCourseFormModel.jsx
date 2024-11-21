@@ -75,7 +75,6 @@ const PostsCourseFormModel = ({isOpen,isClose}) =>{
                                 header:"multipart/form-data"
                             })
                             isClose()
-                            console.log(result)
                      
                     
                     }} 
