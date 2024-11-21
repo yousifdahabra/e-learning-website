@@ -14,14 +14,18 @@ try {
                 $material_file = '';
                 if($_POST['material_id'] == 0){
                     if(isset($_FILES['material_file'])){
-                        $uploadDir = 'assignments/';
+                        $upload_path = '../upload/assignments/';
 
                         $file = $_FILES['material_file'];
-                        $fileName = basename($file['name']);
-                        $fileTmpPath = $file['tmp_name'];
-                        $fileDestination = $uploadDir . $fileName;
-                        if (move_uploaded_file($fileTmpPath, $fileDestination)) {
-                            $material_file = $fileDestination;
+                        $file_name = basename($file['name']);
+                        $file_tmp_path = $file['tmp_name'];
+
+                        $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+                        $new_file_name = uniqid('file_', true) . '.' . $extension; // Example: file_12345abcdef.jpg
+                    
+                        $file_destination = $upload_path . $new_file_name;
+                        if (move_uploaded_file($file_tmp_path, $file_destination)) {
+                            $material_file = $new_file_name;
                         }
                     }
 
