@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { requestAPI } from '../../../utlis/request.js'
 import useForm from "../../../hooks/useForm.js";
+import { useSearchParams } from "react-router-dom";
 
 const PostsCourseFormModel = ({isOpen,isClose,editData = {}}) =>{
+     
+    const [searchParams] = useSearchParams();
+    const courseId = searchParams.get('course_id');
 
-   
 
     const {form,updateForm} = useForm({
         material_title:'',
         material_type:'',
         material_content:'',
-        course_id:0,
+        course_id:courseId,
+        material_id:0,
     })
 
   
@@ -29,18 +33,7 @@ const PostsCourseFormModel = ({isOpen,isClose,editData = {}}) =>{
                     type="text"/>
                 </div>
                 
-                <div className=" flex flex-wrap-nowrap align-items-start  form-group">
-                    <label for="type">Select Cours</label>
-                    <select 
-                    value={form.course_id}
-                    name="course_id"
-                    onChange={updateForm}
-                    >
-                        <option value="0">Select</option>
-                        
-
-                    </select>
-                </div>
+                
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">
                     <label for="type">Select  type</label>
                     <select 
@@ -68,7 +61,7 @@ const PostsCourseFormModel = ({isOpen,isClose,editData = {}}) =>{
                 <div className=" flex flex-wrap-nowrap align-items-start  form-group">
                     <button onClick={ async ()=>{
                             const result = await requestAPI({
-                                route:"courses/mangeCourse",
+                                route:"posts/mangeCoursePosts",
                                 method:"POST",
                                 body:form,
                             })
