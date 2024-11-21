@@ -11,6 +11,7 @@ import "./styles/base/flex.css";
 import "./styles/pages/dashboard.css";
 import Users from "./pages/Users";
 import Posts from "./pages/Posts";
+import Students from "./pages/Students";
 import UsersProvider from "./context/usersContext";
 import { BrowserRouter } from "react-router-dom";
 
@@ -28,6 +29,7 @@ function App() {
 
             <Route path="/Users" element={<Users />} />
             <Route path="/Posts" element={<Posts />} />
+            <Route path="/Students" element={<Students />} />
 
             <Route path="/*" element={<h1>Not Found</h1>} />
           </Routes>

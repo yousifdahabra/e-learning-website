@@ -103,7 +103,9 @@ const Login = () => {
                             navigate("/AdminDashboard");
                           }else if(result.user.role == 'instructor'){
                             navigate("/Users");
-
+                          }
+                          else if(result.user.role == 'student'){
+                            navigate("/Students");
                           }
                         }else{
                           setError(result.messages);
