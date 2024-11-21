@@ -6,7 +6,20 @@ import PostsReportBody from "../components/users/posts/ReportBody";
 import PostsReportHeader from "../components/users/posts/PostsReportHeader";
 import PostsCourseFormModel from "../components/users/posts/PostsCourseFormModel";
 const Posts = () =>{
-
+    const [isOpenAdd, setisOpenAdd] = useState(false);
+    const [editData, seteditData] = useState([]);
+  
+      const triggerAddForm = () =>{
+        setisOpenAdd((isOpenAdd)=> !isOpenAdd)
+    }
+      const triggerEditForm = ($data) =>{
+        setisOpenAdd((isOpenAdd)=> !isOpenAdd)
+        seteditData($data);
+        console.log($data)
+      }
+    const triggerCloseForm = () =>{
+          setisOpenAdd(false)
+      }
     return <>
     <Header/>
     <div className="flex main-container">
@@ -14,13 +27,13 @@ const Posts = () =>{
 
          <div className="main">
             <div className="report-container">
-                <PostsReportHeader/>
-                <PostsReportBody/>
+                <PostsReportHeader triggerAdd={triggerAddForm} />
+                <PostsReportBody isOpen={triggerEditForm}/>
             </div>
         </div>
     </div>
 
-    <PostsCourseFormModel/>
+    <PostsCourseFormModel isOpen={isOpenAdd} isClose={triggerCloseForm} editData={editData}  />
     </>;
 }
 
