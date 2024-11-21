@@ -4,7 +4,7 @@ import { requestAPI } from '../../../utlis/request.js'
 import useForm from "../../../hooks/useForm.js";
 import { useSearchParams } from "react-router-dom";
 
-const PostsCourseFormModel = ({isOpen,isClose,editData = {}}) =>{
+const PostsCourseFormModel = ({isOpen,isClose}) =>{
      
     const [searchParams] = useSearchParams();
     const courseId = searchParams.get('course_id');

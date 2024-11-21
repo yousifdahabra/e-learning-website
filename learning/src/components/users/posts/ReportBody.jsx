@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 
-const PostsReportBody = ({isOpen}) =>{
+const PostsReportBody = ({triggerAdd}) =>{
     const [coursePosts, setCoursePosts] = useState([]);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
