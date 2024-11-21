@@ -59,7 +59,10 @@ const ReportBody = ({isOpen}) =>{
                   </button>
                   <button
                     className="  delete-btn view"
-                    onClick={isOpen}
+                    onClick={
+                      () => {
+                          isOpen(c)
+                      }}
                   >
                     Invite Students
                   </button>

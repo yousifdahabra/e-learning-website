@@ -2,38 +2,55 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { requestAPI } from '../../../utlis/request.js'
 import useForm from "../../../hooks/useForm.js";
-import { useSearchParams } from "react-router-dom";
-
-const InviteCourseFormModel = ({isOpen,isClose}) =>{
-     
-    const [searchParams] = useSearchParams();
-    const courseId = searchParams.get('course_id');
  
- 
-    const {form,updateForm,setFieldValue} = useForm({
-        course_id:courseId,
-        student_ids:[],
+const InviteCourseFormModel = ({isOpen,isClose,course_id }) =>{
+    const [studetnsOptions, setStudetnsOptions] = useState([]);
+    const {form,updateForm} = useForm({
+        course_id:course_id,
+        student_id:0,
         invite_note:'',
     })
+
+    
+
+ 
+
+    const getStudetnsOptions = async () =>{
+        const result = await requestAPI({
+            route:"users/getStudents",
+            method:"POST",
+            body:'', 
+        })
+        const studetns = result.result
+        setStudetnsOptions(studetns)
+    } 
+    useEffect(() => {
+        getStudetnsOptions();
+     }, []); 
  
   
     return (
         <div className={`modal ${isOpen ? "": "hidden" }`} >
         <div className="modal-content">
-            <input type="hidden" id="transaction_id" value="0"/>
+            <input type="hidden" id="course_id" 
+                    onChange={updateForm}
+            value={course_id} />
             <div className="form flex flex-direction-column">
                 
                 <div className="form-group flex flex-wrap-nowrap align-items-start  ">
                     <label for="type">Select  type</label>
                     <select 
-                    value={form.student_ids}
-                    name="student_ids"
+                    value={form.student_id}
+                    name="student_id"
                     onChange={updateForm}
                      
                     >
                         <option value="0">Select</option>
-                        <option value="announcement">announcement</option>
-                        <option value="assignment">assignment</option>
+                        {studetnsOptions.map((studetn) => (
+                                <option key={studetn.user_id} value={studetn.user_id}>
+                                    {studetn.username}
+                                </option>
+                            ))}
                         
 
                     </select>
