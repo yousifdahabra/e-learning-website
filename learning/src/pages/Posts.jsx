@@ -14,7 +14,7 @@ const Posts = () =>{
          <div className="main">
             <div className="report-container">
                 <PostsReportHeader/>
-
+                <PostsReportBody/>
             </div>
         </div>
     </div>
