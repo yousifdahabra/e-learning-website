@@ -8,16 +8,16 @@ const PostsCourseFormModel = ({isOpen,isClose,editData = {}}) =>{
      
     const [searchParams] = useSearchParams();
     const courseId = searchParams.get('course_id');
-
-
-    const {form,updateForm} = useForm({
+ 
+ 
+    const {form,updateForm,setFieldValue} = useForm({
         material_title:'',
         material_type:'',
         material_content:'',
         course_id:courseId,
         material_id:0,
     })
-
+ 
   
     return (
         <div className={`modal ${isOpen ? "": "hidden" }`} >
@@ -57,13 +57,22 @@ const PostsCourseFormModel = ({isOpen,isClose,editData = {}}) =>{
                     
                     ></textarea>
                 </div>
+                <div className="flex flex-wrap-nowrap align-items-start  form-group">
+                        <label>Upload File</label>
+                        <input
+                            type="file"
+                            name="material_file"
+                            onChange={(e) => setFieldValue("material_file", e.target.files[0])}
+                        />
+                    </div>
 
-                <div className=" flex flex-wrap-nowrap align-items-start  form-group">
+                <div className=" flex flex-wrap-nowrap align-items-start  form-group ">
                     <button onClick={ async ()=>{
                             const result = await requestAPI({
                                 route:"posts/mangeCoursePosts",
                                 method:"POST",
                                 body:form,
+                                header:"multipart/form-data"
                             })
                             isClose()
                             console.log(result)
