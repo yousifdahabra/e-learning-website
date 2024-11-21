@@ -40,6 +40,7 @@ const PostsReportBody = ({isOpen}) =>{
               <th>Title</th>
               <th>Type</th>
               <th>Content</th>
+              <th>Attach</th>
               <th>Date</th>
              </tr>
           </thead>
@@ -51,6 +52,11 @@ const PostsReportBody = ({isOpen}) =>{
                 <td>{c.material_type}</td>
                 
                 <td>{c.material_content}</td>
+                <td>
+                  {c.material_file != null &&  <a href={`http://localhost/learning/back/upload/assignments/${c.material_file}`}  download >Attach</a>}
+                  
+                  
+                  </td>
                 <td>{c.create_date}</td>
                 
               </tr>
