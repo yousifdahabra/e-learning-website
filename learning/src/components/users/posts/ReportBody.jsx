@@ -53,7 +53,7 @@ const PostsReportBody = ({isOpen}) =>{
                   <button
                     className="  view"
                     onClick={() => {
-                        navigate(`/Posts?course_id=${c.course_id}`);
+                      isOpen(c);
                     }}
                   >
                     Post
