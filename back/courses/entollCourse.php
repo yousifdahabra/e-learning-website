@@ -12,20 +12,20 @@ try {
         if(isset($_POST['course_id']) && isset($_POST['student_id'])    && isset($_POST['invite_note']) ){
             if(!empty($_POST['course_id']) && !empty($_POST['student_id'])   && !empty($_POST['invite_note'])  ){
                     $insert = $db->modify_query([
-                        "query"=>"Insert  into courses_tbl (course_id,student_id,invite_note) values(?,?,?)",
-                        "types" => "ss",
+                        "query"=>"Insert  into enroll_course_tbl (course_id,student_id,invite_note) values(?,?,?)",
+                        "types" => "sss",
                         "params" => [$_POST['course_id'],$_POST['student_id'],$_POST['invite_note']]
                     ]);
                     if($insert){
                         $response = [
                             "state" => "1",
-                            "message" => "Insert Course",
+                            "message" => "Insert invite",
 
                         ];
                     }else{
                         $response = [
                             "state" => "0",
-                            "message" => "Not Insert Course",
+                            "message" => "Not Insert invite",
                         ];
                     }
                
