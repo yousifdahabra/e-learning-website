@@ -11,11 +11,25 @@ try {
     if( $payload->role == 'instructor'){
         if(isset($_POST['material_title']) && isset($_POST['material_type']) && isset($_POST['material_content']) && isset($_POST['course_id'])  ){
             if(!empty($_POST['material_title']) && !empty($_POST['material_type']) && !empty($_POST['material_content']) && !empty($_POST['course_id'])  ){
+                $material_file = '';
                 if($_POST['material_id'] == 0){
+                    if(isset($_FILES['material_file'])){
+                        $uploadDir = 'assignments/';
+
+                        $file = $_FILES['material_file'];
+                        $fileName = basename($file['name']);
+                        $fileTmpPath = $file['tmp_name'];
+                        $fileDestination = $uploadDir . $fileName;
+                        if (move_uploaded_file($fileTmpPath, $fileDestination)) {
+                            $material_file = $fileDestination;
+                        }
+                    }
+
+ 
                     $insert = $db->modify_query([
-                        "query"=>"Insert  into courses_material_tbl (material_title,material_type,material_content,course_id) values(?,?,?,?)",
-                        "types" => "ssss",
-                        "params" => [$_POST['material_title'],$_POST['material_type'],$_POST['material_content'],$_POST['course_id']]
+                        "query"=>"Insert  into courses_material_tbl (material_title,material_type,material_content,course_id,material_file) values(?,?,?,?,?)",
+                        "types" => "sssss",
+                        "params" => [$_POST['material_title'],$_POST['material_type'],$_POST['material_content'],$_POST['course_id'],$material_file]
                     ]);
                     if($insert){
                         $response = [
