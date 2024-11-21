@@ -4,6 +4,7 @@ import Header from "../components/base/Header";
 import NavContainer from "../components/users/NavContainer";
 import PostsReportBody from "../components/users/posts/ReportBody";
 import PostsReportHeader from "../components/users/posts/PostsReportHeader";
+import PostsCourseFormModel from "../components/users/posts/PostsCourseFormModel";
 const Posts = () =>{
 
     return <>
@@ -18,6 +19,8 @@ const Posts = () =>{
             </div>
         </div>
     </div>
+
+    <PostsCourseFormModel/>
     </>;
 }
 
