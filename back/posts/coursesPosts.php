@@ -10,10 +10,10 @@ $key = new Key($secret_key,"HS256");
 $payload = JWT::decode($token,$key);
   if($payload->role == "instructor"){
     $get_courses = $db->select_query([
-        "query"=>"Select * from courses_material_tbl cm  
-                  left join courses_tbl c on c.course_id = cm.course_id    ",
-        "types" => "",
-        "params" => []
+        "query"=>"Select cm.* , c.course_name from courses_material_tbl cm  
+                  left join courses_tbl c on c.course_id = cm.course_id where  cm.course_id = ? ",
+        "types" => "i",
+        "params" => [$_POST['course_id']]
     ]);
     $response = [
         "states" => "1",
