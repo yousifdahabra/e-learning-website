@@ -3,8 +3,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { requestAPI } from '../../utlis/request.js'
 
+import {useSelector} from 'react-redux'
 
 const ReportBody = () =>{
+    const state = useSelector((store)=> store.users);
+    console.log(state)
+   
+  
+
+
     const [users, setUsers] = useState([]);
 
 
