@@ -14,13 +14,15 @@ import Posts from "./pages/Posts";
 import Students from "./pages/Students";
 import UsersProvider from "./context/usersContext";
 import { BrowserRouter } from "react-router-dom";
-
+import {Provider} from "react-redux"
+import {store} from "./redux/store"
 function App() {
 
   return (
     <div className="App">
       <BrowserRouter>
-        <UsersProvider>
+
+      <Provider store={store}>
           <Routes>
             <Route path="/" element={<Login />} />
 
@@ -33,8 +35,8 @@ function App() {
 
             <Route path="/*" element={<h1>Not Found</h1>} />
           </Routes>
-        </UsersProvider>
-      </BrowserRouter>
+          </Provider>
+        </BrowserRouter>
     </div>
   );
 }
