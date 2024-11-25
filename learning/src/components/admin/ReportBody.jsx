@@ -17,6 +17,7 @@ const ReportBody = () =>{
             method:"POST",
             body:data,
         })
+        console.log(result)
 
 
         

@@ -27,7 +27,7 @@ const AdminDashboard = () =>{
     }
 
     return (
-      <>
+      <> 
         <Header />
         <div className="flex main-container">
           <StudentsNavContainer />
