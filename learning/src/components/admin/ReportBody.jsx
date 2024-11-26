@@ -3,14 +3,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { requestAPI } from '../../utlis/request.js'
 
-import {useSelector} from 'react-redux'
 
+import {useSelector,useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom";
+//useDispatch is use Dispatch not action object and it's hock must on componnets 
 const ReportBody = () =>{
-    const state = useSelector((store)=> store.users);
+    const state = useSelector((store)=> store.usersState);
     console.log(state)
-   
-  
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    
 
+ 
 
     const [users, setUsers] = useState([]);
 
@@ -40,6 +44,8 @@ const ReportBody = () =>{
             body:'',
         })
         setUsers(result.result)
+        const action = {type:'users/loadUsers',payload:result.result}
+        dispatch(action)
          
      }
      useEffect(() => {
@@ -61,27 +67,47 @@ const ReportBody = () =>{
                 </tr>
             </thead>
             <tbody>
-                {                    
-                    users?.map((u) => (
-                        <tr   >
-                            <td>{u.username}</td>
-                            <td>{u.role}</td>
+                {         
+                state.list?.map((u) => (
+                    <tr   >
+                        <td>{u.username}</td>
+                        <td>{u.role}</td>
+                         
+                        <td>{u.is_active}</td>
+                        <td>{u.create_date}</td>
+                        <td>
+                            <button className="delete-btn view"
+                            onClick={() => {
+                                
+                                desactiveUser(u.user_id,u.is_active)
+                                 
+                            }}
+                              
+                            
+                            >Desactive</button>
+                        </td>
+                    </tr>            
+                ))          
+                    // users?.map((u) => (
+                    //     <tr   >
+                    //         <td>{u.username}</td>
+                    //         <td>{u.role}</td>
                              
-                            <td>{u.is_active}</td>
-                            <td>{u.create_date}</td>
-                            <td>
-                                <button className="delete-btn view"
-                                onClick={() => {
+                    //         <td>{u.is_active}</td>
+                    //         <td>{u.create_date}</td>
+                    //         <td>
+                    //             <button className="delete-btn view"
+                    //             onClick={() => {
                                     
-                                    desactiveUser(u.user_id,u.is_active)
+                    //                 desactiveUser(u.user_id,u.is_active)
                                      
-                                }}
+                    //             }}
                                   
                                 
-                                >Desactive</button>
-                            </td>
-                        </tr>            
-                    ))
+                    //             >Desactive</button>
+                    //         </td>
+                    //     </tr>            
+                    // ))
 
                
                 }
