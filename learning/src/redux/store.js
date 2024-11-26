@@ -1,9 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit"
-import {userReducer} from "./usersSlice"
+import {userSlice} from "./usersSlice"
 
 export const store = configureStore({
     reducer:{
-        users: userReducer, // users just name can change
+        usersState: userSlice, // users just names can change and we use them to reference the reducer
 
         //exmple: exampleReduser 
     }
