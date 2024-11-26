@@ -2,39 +2,64 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const userSlice  = createSlice({//config objecy
     name:'users',//string
-    initialState:{//we can store any state we store object usually  
+    initialState:{//we can store any state but it's not usefull ? NO ... we store object usually  
         list:[],
-        select:null,
-        loading:false,
+        // select:null,
+        // loading:false,
     },
     reducers:{//key is name and values as a function 
-        startFetching :(_,action)=>{
+        loadUsers :(state,action)=>{//loadUsers :(_,action) => _ is a state we can set any name
+            const users = action.payload
+
             return {
-                list:[],
-                select:null,
-                loading:true,        
+                ...state,
+                list:users,
+                // select:null,
+                // loading:true,        
             };
         },//shoud be object
-        userRecived: (_,action)=>{
-            const users = action.payload;
+        createUser: (state,action)=>{
+            const created = action.payload;
             return {
-                list:users,
-                select:null,
-                loading:false,        
+                ...state,
+                list:[...state.list,created],//for add new user to list
+                // select:null,
+                // loading:false,        
             };
         },
-        userSelect : (current,action) =>{
-            const selectUser = action.payload
-            return {
-                // list:state.list,
-                // select:selectUser, current or whatever name we use it this will coneect with preovus function  
-                ...current,
-                loading:false,
-            };
+        editUser : () =>{
+            // const selectUser = action.payload
+            // return {
+            //     // list:state.list,
+            //     // select:selectUser, current or whatever name we use it this will coneect with preovus function  
+            //     ...current,
+            //     loading:false,
+            // };
+
+        },
+        deleteUser : () =>{
+            // const selectUser = action.payload
+            // return {
+            //     // list:state.list,
+            //     // select:selectUser, current or whatever name we use it this will coneect with preovus function  
+            //     ...current,
+            //     loading:false,
+            // };
+
+        },
+        banUser : () =>{
+            // const selectUser = action.payload
+            // return {
+            //     // list:state.list,
+            //     // select:selectUser, current or whatever name we use it this will coneect with preovus function  
+            //     ...current,
+            //     loading:false,
+            // };
 
         },
     },
     
 });
 
-export const userReducer = userSlice.reducer; //reducer here and before we using reducers so it's compine them
+// export const usersActions = userSlice.actions;
+export default userSlice; //reducer here and before we using reducers so it's compine them
