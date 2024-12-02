@@ -9,10 +9,9 @@ import { useNavigate } from "react-router-dom";
 //useDispatch is use Dispatch not action object and it's hock must on componnets 
 const ReportBody = () =>{
     const state = useSelector((store)=> store.usersState);
-    console.log(state)
-    const navigate = useNavigate()
     const dispatch = useDispatch()
-    
+    const navigate = useNavigate()
+
 
  
 
